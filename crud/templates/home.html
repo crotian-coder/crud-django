@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(199, 179, 162);
+            
+        }
+        .left{
+            float: left;
+            display: inline-block;
+            position: absolute;
+            left: 10%;
+            top: 10%;
+            /* border: 2px solid red; */
+            background-color: salmon;
+            width: 300px;
+            padding: 10px;
+            position: fixed;
+            border-radius: 10px;
+        }
+        .left h3{
+            margin-left: 10px;
+        }
+        .form-control{
+            border-radius: 10px;
+            border: 0;
+            width: 200px;
+            padding: 7px 0;
+            margin-left: 50px;
+
+        }
+        .btn{
+            border: 0;
+            padding: 7px 20px;
+            background-color: saddlebrown;
+            position: relative;
+            left: 50%;
+            border-radius: 10px;
+
+        }
+        .right{
+            float: right;
+            display: inline-block;
+            position: absolute;
+            right: 8%;
+            background-color: burlywood;
+            padding: 0 30px;
+            height: 100%;
+            width: 700px;
+        }
+        /* .right{
+            border: 2px solid red;
+            width: 600px;
+        } */
+        .text-container span{
+            /* border: 2px solid red; */
+            display: inline-block;
+            /* margin: 0 10px; */
+            padding: 9px 0;
+            /* margin: 0 15px; */
+            background-color: rgb(143, 80, 202);
+            color: whitesmoke;
+            border-radius: 10px;
+            
+
+
+        }
+        
+        .email{
+            width: 200px;
+            text-align: center;
+        }
+        .name{
+            width: 150px;
+            text-align: center;
+        }
+        .password{
+            width: 100px;
+            text-align: center;
+        }
+        .stu-Id{
+            width: 30px;
+            text-align: center;
+            
+        }
+        .text-container{
+            background-color: salmon;
+            margin: 15px 0;
+            padding: 10px 0 ;
+            width: 605px;
+            
+        }
+        .text-container-topic{
+            background-color: salmon;
+            margin: 0 0;
+            position: relative;
+            left: 40px;
+            padding: 10px 0 ;
+            width: 605px;
+            /* position: fixed; */
+
+        }
+        .text-container-topic span{
+            /* border: 2px solid red; */
+            display: inline-block;
+            margin: 0 px;
+            padding: 6px 0;
+            /* margin-left: 6px; */
+            /* margin: 0 15px; */
+            background-color: rgb(143, 80, 202);
+            color: whitesmoke;
+            border-radius: 10px;
+
+
+        }
+        .Options{
+            padding-right: 15px;
+            margin-left: 17px;
+        }
+        form{
+            display: inline-block;
+        }
+        .form-control{
+            text-align: center;
+        }
+        .topic{
+            /* border: 2px solid red; */
+            position: sticky;
+            top: 0px;
+            z-index: 1;
+        }
+        .right-container{
+            position: absolute;
+            top: 100px;
+            margin-left: 40px;
+            /* border: 2px solid red; */
+        }
+        
+       .del{
+           background-color: red;
+           border: 0;
+           color: white;
+           border-radius: 5px;
+           margin: 0 6px;
+       }
+       .edit{
+           background-color:green;
+           border: 0;
+           color: white;
+           border-radius: 5px;
+           text-decoration: none;
+           padding: 2px;
+           font-size: 15px;
+
+       }
+       .del:hover{
+        cursor: pointer;
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h3>Fill To Add Your Data On Screen</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input class="btn" type="submit">
+    
+            </form>
+        </div>
+        <div class="right">
+            <!-- <h2>id &nbsp;&nbsp; name &nbsp;&nbsp; email &nbsp;&nbsp; password </h2> -->
+            
+            <div class="topic">
+
+                <div class="text-container-topic">
+                    <span class="stu-Id" ><h3>Id</h3></span>
+                    <span class="name"><h3>Name</h3></span>
+                    <span class="email"><h3>Email</h3></span>
+                    <span class="password"><h3>Password</h3></span>
+                    <span class="Options"><h3>Options</h3></span>
+
+                </div>
+            </div>
+            <div class="right-container">
+
+                {% for stu in stud %}
+                <div class="text-container">
+                    <span class="stu-Id">{{stu.id}}</span>
+                    <span class="name">{{stu.name}}</span>
+                    <span class="email">{{stu.email}}</span>
+                    <span class="password">{{stu.password}}</span>
+                    <a class="edit" href="{% url 'update' stu.id %}">Edit</a>
+                    <form action="{% url 'delete' stu.id%}" method = "POST">
+                        {% csrf_token %}
+                        <input class="del" type="submit" value="Delete">
+                    </form>
+
+                  
+                    
+                </div>
+                
+    
+    
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(199, 179, 162);
+            
+        }
+        .left{
+            
+            display: inline-block;
+            position: absolute;
+            left: 34%;
+            top: 10%;
+            /* border: 2px solid red; */
+            background-color: salmon;
+            width: 500px;
+            height: 400px;
+            padding: 10px;
+            position: fixed;
+            border-radius: 10px;
+        }
+        .left h3{
+            position: relative;
+            left: 20%;
+        }
+        .form-control{
+            border-radius: 10px;
+            border: 0;
+            width: 200px;
+            padding: 7px 0;
+            margin-left: 50px;
+            margin: 2% 0;
+            text-align: center;
+
+        }
+        form{
+            position: relative;
+            top: 6%;
+            left: 23%;
+        }
+        .btn{
+            border: 0;
+            padding: 7px 20px;
+            background-color: saddlebrown;
+            position: relative;
+            left: 20%;
+            border-radius: 10px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="left">
+        <h3>Fill To Update Your Data On Screen</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="btn" type="submit">
+
+        </form>
+    </div>
+</body>
+</html>
